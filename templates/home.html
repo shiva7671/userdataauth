@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home - User Dashboard</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}" />
+</head>
+<body>
+<nav class="navbar">
+    <div class="container">
+        <a href="/" class="logo">MyProject</a>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            {% if request.session.username %}
+                <li><a href="/users/">Users</a></li>
+                <li class="username-display">Hi, {{ request.session.username }}</li>
+                <li><a href="/logout/">Logout</a></li>
+            {% else %}
+                <li><a href="/login/">Login</a></li>
+                <li><a href="/signup/">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+<main class="main-container container">
+    <section class="welcome-section">
+        {% if request.session.username %}
+        <h1>Welcome back, {{ request.session.username }}!</h1>
+        <p>Manage your account, view users, and explore your dashboard.</p>
+        {% else %}
+        <h1>Welcome to MyProject</h1>
+        <p>Please <a href="/login/">login</a> or <a href="/signup/">sign up</a> to continue.</p>
+        {% endif %}
+    </section>
+</main>
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 MyProject. All rights reserved.</p>
+    </div>
+</footer>
+</body>
+</html>

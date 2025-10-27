@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>User Signup</title>
+    <link rel="stylesheet" href="{% static 'signup.css' %}" />
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Create Your Account</h2>
+        <form method="POST" id="signupForm" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-submit">Sign Up</button>
+        </form>
+        <p class="login-text">Already have an account? <a href="/login/">Login here</a></p>
+        {% if messages %}
+        <div class="msg-list">
+            {% for msg in messages %}
+            <span class="msg">{{ msg }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

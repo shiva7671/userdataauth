@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="{% static 'signin.css' %}" />
+</head>
+<body>
+    <div class="login-container">
+        <h2>Welcome Back</h2>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_username">Username</label>
+                <input type="text" id="id_username" name="username" placeholder="Enter your username" required />
+            </div>
+            <div class="form-group">
+                <label for="id_password">Password</label>
+                <input type="password" id="id_password" name="password" placeholder="Enter your password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Sign In</button>
+            <p class="register-link">Don't have an account? <a href="/signup/">Register here</a></p>
+        </form>
+        {% if messages %}
+        <div class="msg-list">
+            {% for msg in messages %}
+            <span class="msg">{{ msg }}</span>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

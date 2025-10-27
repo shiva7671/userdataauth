@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Details Table</title>
+    <link rel="stylesheet" href="{% static 'users.css' %}">
+</head>
+<body>
+    <div class="table-container">
+        <a class="btn btn-add" href="/insert/">Add Data</a>
+        <a class="btn btn-logout" href="/logout/">Logout</a>
+        <table class="user-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Role</th>
+                    <th>Address</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{user.name}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.role}}</td>
+                    <td>{{user.address}}</td>
+                    <td>
+                        <a class="btn btn-update" href="/update/{{user.id}}/">Update</a>
+                        <a class="btn btn-delete" href="/delete/{{user.id}}/" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" style="text-align:center;">No users found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
